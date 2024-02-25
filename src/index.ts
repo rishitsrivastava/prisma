@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { compileFunction } from "vm";
 
 const prisma = new PrismaClient();
 
@@ -38,7 +39,16 @@ async function updateUser(username: string, {
     })
     console.log(res);
 }
-updateUser("rishitsri@gmail.com", {
-    firstName: "Rishi", 
-    lastName: "Srivastava"
-});
+
+// updateUser("rishitsri@gmail.com", {
+//     firstName: "Rishi", 
+//     lastName: "Srivastava"
+// });
+
+async function getUserDetails(userName: string) {
+    const res = await prisma.user.findMany({
+        where: { email: userName}
+    })
+    console.log(res);
+}
+getUserDetails("rishitsri@gmail.com")

@@ -40,7 +40,16 @@ function updateUser(username, { firstName, lastName }) {
         console.log(res);
     });
 }
-updateUser("rishitsri@gmail.com", {
-    firstName: "Rishi",
-    lastName: "Srivastava"
-});
+// updateUser("rishitsri@gmail.com", {
+//     firstName: "Rishi", 
+//     lastName: "Srivastava"
+// });
+function getUserDetails(userName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield prisma.user.findMany({
+            where: { email: userName }
+        });
+        console.log(res);
+    });
+}
+getUserDetails("rishitsri@gmail.com");
